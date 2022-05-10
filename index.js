@@ -1,10 +1,17 @@
 const express = require('express');
-const clients = require('./routes/clients');
+const alerts = require('./routes/alerts');
+const bodyParser = require('body-parser');
+
 
 const app = express();
 
 app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/clients', clients);
+app.use('/alerts', alerts);
 
-app.listen(3000);
+app.listen(5000 , function(err) {
+    if (err) console.log(err);
+    console.log("running on port 5000");	
+});
