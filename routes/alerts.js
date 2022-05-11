@@ -1,6 +1,11 @@
 var express = require('express');
 var router = express.Router();
 const request = require('request');
+require('dotenv').config();
+
+
+let id = process.env.PROJECT_ID            /* gitlab project id  */
+let token = process.env.ACCESS_TOKEN    /* gitlab token */
 
 const alerts= [];
 
@@ -23,8 +28,7 @@ router.post('/', function(req, res) {
   
   console.log(req.body.alerts)
 
-  let id = "25039571"               /* gitlab project id  */
-  let token = "<gitlab_token>"      /* gitlab token */
+  
   const options = {
     url: `https://gitlab.com/api/v4/projects/${id}/issues`,
     json: true,
