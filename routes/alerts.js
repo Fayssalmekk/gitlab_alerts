@@ -6,7 +6,6 @@ require('dotenv').config();
 
 let id = process.env.PROJECT_ID            /* gitlab project id  */
 let token = process.env.ACCESS_TOKEN    /* gitlab token */
-
 const alerts= [];
 
 
