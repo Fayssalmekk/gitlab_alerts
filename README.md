@@ -1,15 +1,15 @@
-﻿# Rest Api Express without database
+﻿# Send Prometheus alerts to Gitlab Issues 
 
 Install dependencies:
 
 ```bash
-$ npm install
+$ npm i
 ```
 
   Start the server:
 
 ```bash
-$ npm start
+$ ACCESS_TOKEN="<gitlab_access_token>" PROJECT_ID="<gitlab_ptoject_id>" node index.js
 ```
 
-  View the website at: http://localhost:3000
+server running on : http://localhost:5000
