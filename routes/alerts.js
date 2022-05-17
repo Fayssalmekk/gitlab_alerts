@@ -29,7 +29,7 @@ router.post('/', function(req, res) {
 
   
   const options = {
-    url: `https://gitlab.com/api/v4/projects/${id}/issues`,
+    url: `https://git-ps.wakanda.io/api/v4/projects/${id}/issues`,
     json: true,
     headers: {
       'PRIVATE-TOKEN': token,
