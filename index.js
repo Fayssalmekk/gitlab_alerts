@@ -13,7 +13,7 @@ app.use('/alerts', alerts);
 
 app.listen(5000 , function(err) {
     if (err) console.log(err);
-    console.log("running on port 5000");	
+    console.log("running");	
 });
 
 module.exports = app;

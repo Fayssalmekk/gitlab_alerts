@@ -23,7 +23,6 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs12.x
-  
 
 # you can overwrite defaults here
 #  stage: dev
@@ -35,7 +34,7 @@ provider:
 # you can define service wide environment variables here
   environment:
     PROJECT_ID: "2135"
-    ACCESS_TOKEN: "glpat-tstxExtWNZzPyzFYtWr-"
+    ACCESS_TOKEN: "<access_token>"
 
 # you can add packaging information here
 #package:
@@ -50,8 +49,12 @@ functions:
     handler: handler.hello
 
     events:
-      - http: ANY /{proxy+}
-      - http: ANY /
+      - http: 
+          path: alerts
+          method: post
+      - http: 
+          path: alerts
+          method: get
 
 #     xx-xx
 #      - iot:
