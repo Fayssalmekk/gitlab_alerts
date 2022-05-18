@@ -8,6 +8,11 @@ let id = process.env.PROJECT_ID            /* gitlab project id  */
 let token = process.env.ACCESS_TOKEN    /* gitlab token */
 const alerts = [];
 
+async function wait (ms) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, ms)
+  });
+}
 
 function ToLabels(obj) {
   var labels = Object.entries(obj);
@@ -16,14 +21,15 @@ function ToLabels(obj) {
 
 }
 
-router.get('/', function (req, res) {
+router.get('/', async function (req, res) {
   res.send(alerts);
+  await wait(5 * 1000);
   console.log("getting");
 });
 
-router.post('/', function (req, res) {
+router.post('/', async (req, res) => {
   alerts.push(req.body);
-  res.send(alerts);
+  
 
   const options = {
     url: `https://git-ps.wakanda.io/api/v4/projects/${id}/issues`,
@@ -36,34 +42,32 @@ router.post('/', function (req, res) {
       state: "opened",
       description: req.body.commonAnnotations.description,
       labels: ToLabels(req.body.commonLabels),
-      due_date: req.body.alerts[0].startsAt
+      due_date: req.body.alerts[0].startsAt 
 
     }
   };
 
-  request.post(options, (err, res, body) => {
+
+
+  request.post(options, async (err, res, body) => {
     if (err) {
-      res.end;
-      console.log(err);
+      return console.log(err);
 
     }
     console.log("Posted To gitlab issues")
+    await wait(10 * 1000);
+    console.log("posted")
 
   
 
   });
-
-
+  await wait(10 * 1000);
+  res.send(alerts);
   res.end;
-  console.log("posted")
+  
+  
 });
 
-router.put('/', function (req, res) {
-  res.send(res);
-});
 
-router.delete('/', function (req, res) {
-  res.send(204);
-});
 
 module.exports = router;

@@ -34,7 +34,8 @@ provider:
 # you can define service wide environment variables here
   environment:
     PROJECT_ID: "2135"
-    ACCESS_TOKEN: "<access_token>"
+    ACCESS_TOKEN: "glpat-xABsgyAGaBNyFa4zQNHt"
+    timeout: 10
 
 # you can add packaging information here
 #package:
